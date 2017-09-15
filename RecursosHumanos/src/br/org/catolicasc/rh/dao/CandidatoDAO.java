@@ -1,6 +1,8 @@
 package br.org.catolicasc.rh.dao;
 
 import br.org.catolicasc.rh.model.Candidato;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -25,4 +27,7 @@ public class CandidatoDAO extends CandidatoJpaController implements ICandidatoDA
 		}
 		return result;
 	}
+	
+
+	   
 }

@@ -27,144 +27,156 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public class Emprego implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", precision = 0)
-    private Long id;
-    private String empresa;
-    private String cidade;
-    @XmlTransient
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataDemissao;
-    @XmlTransient
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataEmissao;
-    private String atividadesDesempenhadas;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", precision = 0)
+	private Long id;
 
-    @ManyToOne
-    private Candidato candidato;
+	private String empresa;
+	private String cidade;
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date dataDemissao;
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date dataEmissao;
+	private String atividadesDesempenhadas;
 
-    public Emprego() {
+	@ManyToOne
+	private Qualificacoes qualificacoes;
 
-    }
+	public Emprego() {
 
-    public Emprego(Long id, String empresa, String cidade, Date dataDemissao, Date dataEmissao, String atividadesDesempenhadas, Candidato candidato) {
-        super();
-        this.id = id;
-        this.empresa = empresa;
-        this.cidade = cidade;
-        this.dataDemissao = dataDemissao;
-        this.dataEmissao = dataEmissao;
-        this.atividadesDesempenhadas = atividadesDesempenhadas;
-        this.candidato = candidato;
-    }
+	}
 
+	public Emprego(Long id, String empresa, String cidade, Date dataDemissao, Date dataEmissao,
+			String atividadesDesempenhadas, Qualificacoes qualificacoes) {
+		super();
+		this.id = id;
+		this.empresa = empresa;
+		this.cidade = cidade;
+		this.dataDemissao = dataDemissao;
+		this.dataEmissao = dataEmissao;
+		this.atividadesDesempenhadas = atividadesDesempenhadas;
+
+		this.qualificacoes = qualificacoes;
+	}
 
 	public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getEmpresa() {
-        return empresa;
-    }
+	public String getEmpresa() {
+		return empresa;
+	}
 
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
 
-    public String getCidade() {
-        return cidade;
-    }
+	public String getCidade() {
+		return cidade;
+	}
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
 
-    public Date getDataDemissao() {
-        return dataDemissao;
-    }
+	public Date getDataDemissao() {
+		return dataDemissao;
+	}
 
-    public void setDataDemissao(Date dataDemissao) {
-        this.dataDemissao = dataDemissao;
-    }
+	public void setDataDemissao(Date dataDemissao) {
+		this.dataDemissao = dataDemissao;
+	}
 
-    public Date getDataEmissao() {
-        return dataEmissao;
-    }
+	public Date getDataEmissao() {
+		return dataEmissao;
+	}
 
-    public void setDataEmissao(Date dataEmissao) {
-        this.dataEmissao = dataEmissao;
-    }
+	public void setDataEmissao(Date dataEmissao) {
+		this.dataEmissao = dataEmissao;
+	}
 
-    public String getAtividadesDesempenhadas() {
-        return atividadesDesempenhadas;
-    }
+	public String getAtividadesDesempenhadas() {
+		return atividadesDesempenhadas;
+	}
 
-    public void setAtividadesDesempenhadas(String atividadesDesempenhadas) {
-        this.atividadesDesempenhadas = atividadesDesempenhadas;
-    }
+	public void setAtividadesDesempenhadas(String atividadesDesempenhadas) {
+		this.atividadesDesempenhadas = atividadesDesempenhadas;
+	}
 
-    public Candidato getCandidato() {
-        return candidato;
-    }
+	public Qualificacoes getQualificacoes() {
+		return qualificacoes;
+	}
 
-    public void setCandidato(Candidato candidato) {
-        this.candidato = candidato;
-    }
+	public void setQualificacoes(Qualificacoes qualificacoes) {
+		this.qualificacoes = qualificacoes;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.id);
-        hash = 71 * hash + Objects.hashCode(this.empresa);
-        hash = 71 * hash + Objects.hashCode(this.cidade);
-        hash = 71 * hash + Objects.hashCode(this.dataDemissao);
-        hash = 71 * hash + Objects.hashCode(this.dataEmissao);
-        hash = 71 * hash + Objects.hashCode(this.atividadesDesempenhadas);
-        hash = 71 * hash + Objects.hashCode(this.candidato);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((atividadesDesempenhadas == null) ? 0 : atividadesDesempenhadas.hashCode());
+		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+		result = prime * result + ((dataDemissao == null) ? 0 : dataDemissao.hashCode());
+		result = prime * result + ((dataEmissao == null) ? 0 : dataEmissao.hashCode());
+		result = prime * result + ((empresa == null) ? 0 : empresa.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((qualificacoes == null) ? 0 : qualificacoes.hashCode());
+		return result;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Emprego other = (Emprego) obj;
-        if (!Objects.equals(this.empresa, other.empresa)) {
-            return false;
-        }
-        if (!Objects.equals(this.cidade, other.cidade)) {
-            return false;
-        }
-        if (!Objects.equals(this.atividadesDesempenhadas, other.atividadesDesempenhadas)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataDemissao, other.dataDemissao)) {
-            return false;
-        }
-        if (!Objects.equals(this.dataEmissao, other.dataEmissao)) {
-            return false;
-        }
-        if (!Objects.equals(this.candidato, other.candidato)) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Emprego other = (Emprego) obj;
+		if (atividadesDesempenhadas == null) {
+			if (other.atividadesDesempenhadas != null)
+				return false;
+		} else if (!atividadesDesempenhadas.equals(other.atividadesDesempenhadas))
+			return false;
+		if (cidade == null) {
+			if (other.cidade != null)
+				return false;
+		} else if (!cidade.equals(other.cidade))
+			return false;
+		if (dataDemissao == null) {
+			if (other.dataDemissao != null)
+				return false;
+		} else if (!dataDemissao.equals(other.dataDemissao))
+			return false;
+		if (dataEmissao == null) {
+			if (other.dataEmissao != null)
+				return false;
+		} else if (!dataEmissao.equals(other.dataEmissao))
+			return false;
+		if (empresa == null) {
+			if (other.empresa != null)
+				return false;
+		} else if (!empresa.equals(other.empresa))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (qualificacoes == null) {
+			if (other.qualificacoes != null)
+				return false;
+		} else if (!qualificacoes.equals(other.qualificacoes))
+			return false;
+		return true;
+	}
 
 }
